@@ -3,6 +3,7 @@
 # Required Docker 1.3 or higher!
 
 # Remove old container
+sudo docker stop squid-noauth
 sudo docker rm squid-noauth
 
 # Create container
