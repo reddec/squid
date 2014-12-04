@@ -13,7 +13,7 @@ Install scrips:
 
 **With basic auth**
 
-    bash <(curlhttps://raw.githubusercontent.com/reddec/squid/master/install/install-with-auth.sh)
+     bash <(curlhttps://raw.githubusercontent.com/reddec/squid/master/install/install-with-auth.sh)
 
 
 ----------
@@ -25,31 +25,38 @@ Build
 
 1. Create containers
 
-    sudo docker create --name squid-auth -v /etc/squid-passwords:/passowrds -p 3128:3128 reddec/squid auth
+
+     sudo docker create --name squid-auth -v /etc/squid-passwords:/passowrds -p 3128:3128 reddec/squid auth
     
 2. Add users. Required `apache2-utils`
 
-    sudo htpasswd -c /etc/squid-passwords/keys <username>
+
+     sudo htpasswd -c /etc/squid-passwords/keys <username>
     
 3. Add upstart script
 
-    sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-auth.conf > /etc/init/squid3-auth.conf
+
+     sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-auth.conf > /etc/init/squid3-auth.conf
     
 4. Start service
 
-    sudo service squid3-auth start
+
+     sudo service squid3-auth start
 
 # Without authentication
 
 1. Create containers
 
-    ssudo docker create --name squid-noauth -p 3128:3128 reddec/squid noauth
+
+     sudo docker create --name squid-noauth -p 3128:3128 reddec/squid noauth
     
 2. Add upstart script
 
-    sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-noauth.conf > /etc/init/squid3-noauth.conf
+
+     sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-noauth.conf > /etc/init/squid3-noauth.conf
     
 3. Start service
 
-    sudo service squid3-noauth start
+
+     sudo service squid3-noauth start
     
