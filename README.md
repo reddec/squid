@@ -13,7 +13,7 @@ Install scrips:
 
 **With basic auth**
 
-     bash <(curlhttps://raw.githubusercontent.com/reddec/squid/master/install/install-with-auth.sh)
+     bash <(curl https://raw.githubusercontent.com/reddec/squid/master/install/install-with-auth.sh)
 
 Location for custom configuration files:
 

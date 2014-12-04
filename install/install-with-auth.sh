@@ -14,7 +14,7 @@ sudo touch /etc/squid-passwords/keys
 sudo mkdir -p /etc/squid-auth
 
 # Create container
-sudo docker create --name squid-auth -v /etc/squid-passwords:/passowrds -v /etc/squid-auth:/etc/squid3/conf.d/extra -p 3128:3128 squid auth
+sudo docker create --name squid-auth -v /etc/squid-passwords:/passowrds -v /etc/squid-auth:/etc/squid3/conf.d/extra -p 3128:3128 reddec/squid auth
 
 # Save upstart script
 sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-auth.conf -o /etc/init/squid3-auth.conf
