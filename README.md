@@ -3,40 +3,53 @@ squid
 
 Docker (at least 1.3) image for Squid3 with or without basic auth
 
+Tested on Ubuntu 14.04 x64 LTS
+
+Install scrips:
+
+**No auth**
+
+     bash <(curl https://raw.githubusercontent.com/reddec/squid/master/install/install-no-auth.sh)
+
+**With basic auth**
+
+    bash <(curlhttps://raw.githubusercontent.com/reddec/squid/master/install/install-with-auth.sh)
+
+
+----------
+
 Build
 =====
 
+# With basic authentication
 
-# Create containers
+1. Create containers
 
-### Without auth
+    sudo docker create --name squid-auth -v /etc/squid-passwords:/passowrds -p 3128:3128 reddec/squid auth
+    
+2. Add users. Required `apache2-utils`
 
-`sudo docker create --name squid-noauth -p 3128:3128 squid noauth`
+    sudo htpasswd -c /etc/squid-passwords/keys <username>
+    
+3. Add upstart script
 
-### With auth
+    sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-auth.conf > /etc/init/squid3-auth.conf
+    
+4. Start service
 
-`sudo docker create --name squid-auth -v /etc/squid-passwords:/passowrds -p 3128:3128 squid auth`
+    sudo service squid3-auth start
 
-#### Add users
+# Without authentication
 
-Install `apache2-utils`
+1. Create containers
 
-`sudo htpasswd -c /etc/squid-passwords/keys <username>`
+    ssudo docker create --name squid-noauth -p 3128:3128 reddec/squid noauth
+    
+2. Add upstart script
 
-# Start up scripts (UPSTART)
+    sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-noauth.conf > /etc/init/squid3-noauth.conf
+    
+3. Start service
 
-### Without auth
-
-`sudo cp squid3-noauth.conf /etc/init/`
-
-start by
-
-`sudo service squid3-noauth start`
-
-### With auth
-
-`sudo cp squid3-auth.conf /etc/init/`
-
-start by
-
-`sudo service squid3-auth stop`
+    sudo service squid3-noauth start
+    
