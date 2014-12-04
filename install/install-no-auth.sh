@@ -10,7 +10,7 @@ sudo docker rm squid-noauth
 sudo docker create --name squid-noauth -p 3128:3128 reddec/squid noauth
 
 # Save upstart script
-sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-noauth.conf > /etc/init/squid3-noauth.conf
+sudo curl https://raw.githubusercontent.com/reddec/squid/master/services/squid3-noauth.conf -o /etc/init/squid3-noauth.conf
 
 echo "+------------------------------------------------------+"
 echo "|                                                      |"
